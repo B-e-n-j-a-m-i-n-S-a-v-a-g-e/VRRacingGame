@@ -7,9 +7,16 @@ public class KartScript : MonoBehaviour {
 	public float speed = 1f;
 	public bool levelBegin = false;
 
+	private int currentCheckpoint;
+	private int currentLap;
+
+	public int CurrentLap { get { return currentLap;}}
+
+
 	// Use this for initialization
 	void Start () {
-		
+		currentCheckpoint = -1;
+		currentLap = 0;
 	}
 	
 	// Update is called once per frame
@@ -34,6 +41,19 @@ public class KartScript : MonoBehaviour {
 
 		if (collider.tag == "Checkpoint") {
 			int checkpoint = int.Parse(collider.name);
+
+			if (checkpoint == currentCheckpoint + 1) {
+				currentCheckpoint++;
+
+				Debug.Log ("checkpoint: " + currentCheckpoint);
+			}
+
+			if (checkpoint == 0 && currentCheckpoint == 3) {
+				currentCheckpoint = 0;
+				currentLap++;
+
+				Debug.Log ("New Lap!");
+			}
 		}
 	}
 }
