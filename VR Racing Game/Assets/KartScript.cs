@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class KartScript : MonoBehaviour {
 
-	public float speed = 1f;
-	public bool levelBegin = false;
+	public float speed = 5f;
+	//public bool levelBegin = false;
 
 	private int currentCheckpoint;
 	private int currentLap;
@@ -22,19 +22,13 @@ public class KartScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began || Input.GetKeyDown ("space")) {
-			levelBegin = true;
-		}
-
-		if (levelBegin) {
-
 			Vector3 movementDirection = new Vector3 (
 				                           transform.forward.x,
 				                           0,
 				                           transform.forward.z
 			                           );
-			transform.position += movementDirection.normalized * speed * Time.deltaTime;
-		}
+			//transform.position += movementDirection.normalized * speed * Time.deltaTime;
+		transform.Translate(transform.forward * Time.deltaTime * speed, Space.World);
 	}
 
 	void OnTriggerEnter(Collider collider) {
