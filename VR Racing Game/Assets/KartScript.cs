@@ -28,7 +28,8 @@ public class KartScript : MonoBehaviour {
 				                           transform.forward.z
 			                           );
 			//transform.position += movementDirection.normalized * speed * Time.deltaTime;
-		transform.Translate(transform.forward * Time.deltaTime * speed, Space.World);
+		//transform.Translate(transform.forward * Time.deltaTime * speed, Space.World);
+		transform.position = transform.position + Camera.main.transform.forward * speed * Time.deltaTime;
 	}
 
 	void OnTriggerEnter(Collider collider) {
